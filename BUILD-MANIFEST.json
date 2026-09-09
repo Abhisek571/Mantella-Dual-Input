@@ -11,7 +11,7 @@
     "Licenses/Mantella-Backend-AGPL-3.0.txt": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
     "Licenses/Mantella-Game-LICENSE.txt": "2c6ba46a6a2755da7f94334010a0025c9b09222feaa025c43fd54d563c64f90e",
     "meta.ini": "323f8b47fc0ef3747bd2796a34e3f536aca986efb64f99a70ffbf26853a8fdbc",
-    "README.md": "11e63bf90238b16475ba0d3869e7805e7b818b9358b2efdf278c06c2d6cb5831",
+    "README.md": "e156ac8fd393f7a1886308bb464519b9def813e19c9f66f280c67ffd21f4e8c7",
     "Scripts/MantellaConversation.pex": "a3ee9c854f8fb238724d6097d75fe1e5f086185360d347a45b1c9d355f7d8520",
     "Scripts/MantellaMCM.pex": "6a38bd298d7198d52bb9af376b71ff82d2a38103c6e97f3851cf4d22149b7209",
     "Scripts/MantellaMCM_GeneralSettings.pex": "d22b2c6da9838b6ed2119b01308abd5dc573a748ac86a2cbd3d19b8d5177d0dd",
@@ -29,6 +29,7 @@
     "Source/backend/src/game_manager.py": "f76d6f53d0b3dd20ed71209ce784804d555cdf9849b21830f631d541ff53c63f",
     "Source/backend/src/http/communication_constants.py": "b722bb05df2d3a25d3a78c0f208ec31442d30296ccab3bc80dc59b2db789a115",
     "SOURCE-AND-LICENSES.txt": "f40971aae8850c299d14f27cbaaf896609e1649983fa6db21b06abd55dee4baf",
-    "tests/test_setup.py": "9a55327d761536fdfda44e5ea3d2940bf7f76441a954eb696461081618ef2eb5"
+    "tests/test_setup.py": "9a55327d761536fdfda44e5ea3d2940bf7f76441a954eb696461081618ef2eb5",
+    "BUILD.md": "20e5677bb6d01fb4b2edca0746ca5633d3c23852297753bc9d6ff47bf3e0e8ed"
   }
 }

@@ -12,6 +12,10 @@ Requires a working Mantella installation and its dependencies. Setup supports on
 
 **Limits:** Windows keyboard only; VR/controllers are untested. Immediate cancellation of speech capture is not fully implemented.
 
+## Build
+
+See [BUILD.md](BUILD.md) for Python 3.11 setup, backend build commands, tests, optional Papyrus compilation, and MO2 assembly.
+
 ## Source and license
 
 Unofficial patch of [Mantella](https://github.com/art-from-the-machine/Mantella). Backend changes and setup tools use **AGPL-3.0-or-later**; game scripts retain Mantella's **MIT** license. Source and original notices are included; see [SOURCE-AND-LICENSES.txt](SOURCE-AND-LICENSES.txt).
