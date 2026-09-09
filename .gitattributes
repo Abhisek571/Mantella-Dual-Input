@@ -1,0 +1,2 @@
+# Preserve exact bytes: the setup contract and manifest use SHA-256.
+* -text

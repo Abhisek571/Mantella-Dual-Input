@@ -1,0 +1,26 @@
+{
+  "original_sha256": "b103fb5cbdfd9b3cb7bb1c157ad67bca1a1d8fcd554e76f2bd0ca5947d0757b1",
+  "patched_sha256": "43c8fe004c2e5a81899cbe91cf7bb01ef86f847bff7e7aa79dbc01447fb98ffb",
+  "modules": {
+    "src.http.communication_constants": {
+      "source": "src/http/communication_constants.py",
+      "sha256": "b722bb05df2d3a25d3a78c0f208ec31442d30296ccab3bc80dc59b2db789a115",
+      "compile_filename": "src/http/communication_constants.py"
+    },
+    "src.game_manager": {
+      "source": "src/game_manager.py",
+      "sha256": "f76d6f53d0b3dd20ed71209ce784804d555cdf9849b21830f631d541ff53c63f",
+      "compile_filename": "src/game_manager.py"
+    },
+    "src.conversation.conversation": {
+      "source": "src/conversation/conversation.py",
+      "sha256": "85d1b7ffa4425ce464affca6c5cbe6e344003c1b180f72119517d971c364bca3",
+      "compile_filename": "src/conversation/conversation.py"
+    },
+    "src.dual_input": {
+      "source": "src/dual_input.py",
+      "sha256": "67eb5da8f4746eabd8eccf3c2408139844f856495b24db1413292b96abd27f72",
+      "compile_filename": "src/dual_input.py"
+    }
+  }
+}

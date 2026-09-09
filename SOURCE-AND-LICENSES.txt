@@ -1,0 +1,46 @@
+Mantella duel input v1.0
+
+Unofficial modifications to Mantella, dated 2026-09-09: separate typed/spoken
+reply controls and a shorter MCM layout. Not endorsed by the Mantella authors.
+
+LICENSES
+Backend patch source, setup_backend.py and frozen_patch.py are distributed
+under GNU AGPL version 3 or later. See LICENSE and
+Licenses/Mantella-Backend-AGPL-3.0.txt. Original upstream terms and notices apply.
+
+Game scripts derive from Mantella-Spell and retain the MIT license and
+Copyright (c) 2023 art-from-the-machine notice in
+Licenses/Mantella-Game-LICENSE.txt. Modified source is in Scripts/Source;
+compiled scripts are in Scripts. The root license does not replace this MIT notice.
+
+UPSTREAM SOURCE
+Backend baseline: Mantella v0.14
+https://github.com/art-from-the-machine/Mantella/tree/v0.14
+Game baseline: 0c5f8513aff61cda1f32c81a962eee36ba74fdb7
+https://github.com/art-from-the-machine/Mantella-Spell/tree/0c5f8513aff61cda1f32c81a962eee36ba74fdb7
+Patch source and releases:
+https://github.com/Abhisek571/Mantella-duel-input
+
+BUILDING
+The package supplies the modified backend modules and archive helper in
+Source/backend, with a build contract recording source and executable hashes.
+Run setup_backend.py using CPython 3.11 against the supported original executable;
+see INSTALL.txt. No third-party Python packages are needed for this patch step.
+Papyrus sources require the Skyrim Papyrus compiler and Mantella's original
+SKSE, SkyUI, UIExtensions and SKSE_HTTP script imports to rebuild.
+
+No Mantella executable, bundled runtime, dependency scripts, or voice assets
+are redistributed here. Obtain them from the original Mantella installation.
+Setup creates a copy and does not alter the original or user configuration.
+The hash guards establish release compatibility, not restrictions on license
+rights: developers may change the source and build contract for their own builds.
+Redistributing the resulting full executable requires reviewing its bundled
+components and satisfying their source and notice requirements separately.
+Retain applicable AGPL notices and source access when serving remote users.
+
+CREDITS
+Mantella authors and contributors; SKSE, SkyUI and UIExtensions teams.
+Original mod: https://www.nexusmods.com/skyrimspecialedition/mods/98631
+Documentation: https://art-from-the-machine.github.io/Mantella/index.html
+
+Distributed without warranty; see the license texts.

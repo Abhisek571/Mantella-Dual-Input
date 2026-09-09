@@ -1,0 +1,58 @@
+MANTELLA DUEL INPUT — v1.0
+
+Type or speak during the same Mantella conversation, using separate configurable keys.
+This is an unofficial patch. Install Mantella and make sure normal conversations work first.
+
+REQUIREMENTS
+Windows keyboard setup; working Mantella for Skyrim SE and all of its requirements.
+Tested environment: Skyrim SE 1.6.1170 and the supported installed Windows Mantella backend.
+The backend setup checks the exact executable hash, not just its version label:
+b103fb5cbdfd9b3cb7bb1c157ad67bca1a1d8fcd554e76f2bd0ca5947d0757b1
+Other Mantella builds are rejected rather than patched on a guess.
+Python 3.11 is needed ONCE to prepare the public download's backend.
+Use the official Windows Python 3.11 installer from https://www.python.org/downloads/windows/
+Install its Python launcher so the command "py -3.11" works. No pip packages are required.
+
+INSTALL WITH MO2
+1. Close Skyrim and Mantella. Install this ZIP as its own mod named Mantella duel input.
+2. Put it after Mantella in MO2's left pane. Let this mod win the four Mantella script conflicts.
+3. Right-click this mod and open its folder in Explorer. Run Setup Backend.cmd.
+4. Setup looks for the original Mantella.exe in sibling MO2 mod folders. If it asks,
+   paste the full path to the ORIGINAL Mantella.exe inside the original Mantella mod,
+   normally SKSE\Plugins\MantellaSoftware\Mantella.exe. Do not select this patch's copy.
+5. Wait for "backend ready". Enable the mod. Start Skyrim normally through MO2.
+6. Open Mantella's General Settings in MCM. Under Duel Input, Enable Duel Input and
+   choose different Type Reply and Speak Reply keys. Start a NEW conversation.
+
+If setup says "unsupported", STOP. Do not edit the hash check or overwrite the original.
+Provide your Mantella version and executable SHA-256 when requesting compatibility.
+If Python is missing, install Python 3.11 and rerun Setup Backend.cmd.
+Advanced setup: py -3.11 setup_backend.py --original "C:\path\to\original\Mantella.exe"
+
+USE
+Type Reply opens Mantella's text entry. Submit it as usual.
+Speak Reply starts one speech capture. Press once; do not hold the key.
+The keys apply during an active player conversation when Mantella is ready for input.
+Keep your existing Mantella, recognition, LLM and voice settings. This patch does not
+supply XTTS models or change your speech server configuration.
+
+UPDATING / REMOVING
+Keep a backup save before updating script mods. Close Skyrim and Mantella before replacing files.
+After upgrading this patch, rerun backend setup, then start a new conversation.
+To roll back, end the conversation, close Skyrim and disable this separate override in MO2.
+Original Mantella files are not changed. As with other script mods, keep a pre-install save;
+disabling an override is not a guarantee that every persistent value in a save is removed.
+
+LIMITS
+v1.0 updates the menu and version labels without changing the input routing.
+Tested on one Windows setup; not broadly tested across hardware or modlists.
+VR/controllers and other backend builds are not validated. Interrupting speech capture already
+in progress is not fully implemented; do not rely on instant microphone cancellation.
+Conflicts with other mods replacing the same Mantella scripts need a compatibility patch.
+
+PUBLIC PACKAGE
+This download contains scripts, their source, and backend patch source. It does not contain
+Mantella.exe, third-party runtime bundles, voice models, personal configuration or API keys.
+Setup builds a verified copy of YOUR executable inside THIS override. Do not upload your
+locally generated Mantella.exe or the local prebuilt MO2 backup as the public Nexus file.
+See SOURCE-AND-LICENSES.txt for source and license details.
