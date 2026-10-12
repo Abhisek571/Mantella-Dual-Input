@@ -113,7 +113,7 @@ string MantellaMCMcurrentPage
 ; Whenever a new repository value OR a new MCM setting is added, up the MCM version number returned by `ManatellaMCM.GetVersion()`
 ; and add the corresponding default value in 'MCMRepository.assignDefaultSettings' in a block corresponding to the version number like the examples
 int Function GetVersion()
-    Return 9
+    Return 7
 EndFunction
 
 event OnVersionUpdate(int a_version)
@@ -121,9 +121,17 @@ event OnVersionUpdate(int a_version)
     self.OnConfigInit()
 EndEvent
 
+function OnGameReload()
+    parent.OnGameReload()
+    ; Dual Input keeps its own settings schema (see MantellaRepository.MDI_EnsureSettings)
+    if repository
+        repository.MDI_EnsureSettings()
+    endIf
+endFunction
+
 Event OnConfigInit()
 	;this part right here name all the pages we'll need (we can add more pages at the end as long as we update the numbers) and declares some variables
-    ModName = "Mantella duel input"
+    ModName = "Mantella"
 	Pages = new string[6]
     Pages[0] = PAGE_GENERAL
     Pages[1] = PAGE_PLAYER

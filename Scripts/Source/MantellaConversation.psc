@@ -211,6 +211,9 @@ function ContinueConversation(string nextAction, int handle)
         _does_accept_player_input = True
         if _mdiSessionActive
             _mdiState = MDI_STATE_READY
+            if SKSE_HTTP.hasKey(handle, "mdi_no_speech")
+                Debug.Notification("Mantella: no speech heard. Press Speak Reply to try again.")
+            endIf
             ShowRepeatingMessage("Awaiting player input...")
         ElseIf (repository.microphoneEnabled && !repository.useHotkeyToStartMic)
             sendRequestForVoiceTranscribe()
@@ -570,13 +573,21 @@ endFunction
 
 ; MDI functions are separate from the legacy text/microphone branch so the
 ; existing public calls retain their established behavior.
+bool function MDI_IsSessionActive()
+    return _mdiSessionActive
+endFunction
+
 function MDI_RequestTextInput()
-    if !_mdiSessionActive || _hasBeenStopped || !_does_accept_player_input
+    if !_mdiSessionActive || _hasBeenStopped
         return
     endIf
     if _mdiState == MDI_STATE_VOICE_LISTENING
-        ; Core-only test: the existing voice route has no cancellation API.
-        Debug.Notification("Mantella: Speak Reply is busy; voice capture cannot be cancelled.")
+        ; Checked before _does_accept_player_input, which is already false while listening.
+        ; The existing voice route has no cancellation API.
+        Debug.Notification("Mantella: still listening. Finish speaking or wait for it to time out.")
+        return
+    endIf
+    if !_does_accept_player_input
         return
     endIf
     if _mdiState != MDI_STATE_READY

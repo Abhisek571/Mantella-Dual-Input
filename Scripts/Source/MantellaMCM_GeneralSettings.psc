@@ -14,9 +14,9 @@ function LeftColumn(MantellaMCM mcm, MantellaRepository Repository) global
     mcm.oid_responsetimeslider = mcm.AddSliderOption("Text Response Wait Time", repository.MantellaEffectResponseTimer)
     mcm.oid_showReminderMessages = mcm.AddToggleOption("Show Input Reminder Messages", repository.showReminderMessages)
 
-    mcm.AddHeaderOption("Duel Input")
-    mcm.oid_dualInputEnabled = mcm.AddToggleOption("Enable Duel Input", repository.dualInputEnabled)
-    mcm.AddTextOption("Version", "1.0")
+    mcm.AddHeaderOption("Dual Input")
+    mcm.oid_dualInputEnabled = mcm.AddToggleOption("Enable Dual Input", repository.dualInputEnabled)
+    mcm.AddTextOption("Version", "1.1")
 
     mcm.AddHeaderOption("Controls")
     mcm.oid_keymapStartAddHotkey = mcm.AddKeyMapOption("Start Conversation / Add NPC", repository.MantellaStartHotkey)
@@ -175,7 +175,7 @@ function OptionUpdate(MantellaMCM mcm, int optionID, MantellaRepository Reposito
         Repository.dualInputEnabled =! Repository.dualInputEnabled
         mcm.SetToggleOptionValue(mcm.oid_dualInputEnabled, Repository.dualInputEnabled)
         if Repository.dualInputEnabled
-            mcm.ShowMessage("Duel Input enabled for new conversations.", false, "$OK", "")
+            mcm.ShowMessage("Dual Input enabled for new conversations.", false, "$OK", "")
         endIf
     elseIf optionID == mcm.oid_showReminderMessages
         repository.showReminderMessages =! repository.showReminderMessages
@@ -202,4 +202,4 @@ function OptionUpdate(MantellaMCM mcm, int optionID, MantellaRepository Reposito
         Repository.enableVanillaDialogueAwareness =! Repository.enableVanillaDialogueAwareness
         mcm.SetToggleOptionValue(mcm.oid_enableVanillaDialogueAwareness, Repository.enableVanillaDialogueAwareness)
     endif
-endfunction
+endfunction

@@ -227,20 +227,26 @@ function assignDefaultSettings(int lastVersion, bool isFirstInit = false)
         HttpPort = 4999
     EndIf
 
-    ; MDI schema 1 is intentionally independent of Mantella's MCM version.
-    ; Existing bindings are never reset. V is DirectInput/SKSE scan code 47.
+    MDI_EnsureSettings()
+    RefreshHotkeyRegistrations()
+endFunction
+
+; Dual Input defaults are versioned separately from Mantella's MCM version so that
+; Mantella's own GetVersion() stays untouched. Called on first init and on every
+; game load (MantellaMCM.OnGameReload). Existing bindings are never reset.
+function MDI_EnsureSettings()
     If (mdiSettingsSchemaVersion < 1)
         dualInputEnabled = false
         MantellaVoiceInputHotkey = -1
+        ; V is DirectInput/SKSE scan code 47.
         If !IsMantellaHotkeyInUse(47)
             MantellaVoiceInputHotkey = 47
         Else
-            Debug.Notification("Mantella duel input: V is already used by Mantella; Speak Reply was left unbound.")
+            Debug.Notification("Mantella Dual Input: V is already used by Mantella; Speak Reply was left unbound.")
         EndIf
         mdiSettingsSchemaVersion = 1
+        RefreshHotkeyRegistrations()
     EndIf
-
-    RefreshHotkeyRegistrations()
 endFunction
 
 bool function IsMantellaHotkeyInUse(int keyCode)
@@ -335,16 +341,16 @@ Event OnKeyDown(int KeyCode)
             Else
                 ListenerScript.StartGroupConversation()
             endIf        
-        elseIf dualInputEnabled && KeyCode == MantellaListenerTextHotkey
-            MantellaConversation conversation = Quest.GetQuest("MantellaConversation") as MantellaConversation
-            if conversation
-                conversation.MDI_RequestTextInput()
-            endIf
-        elseIf dualInputEnabled && KeyCode == MantellaVoiceInputHotkey
+        elseIf KeyCode == MantellaVoiceInputHotkey
+            ; Routed by the running conversation's mode, not the MCM toggle, so
+            ; toggling Dual Input mid-conversation cannot strand either key.
             MantellaConversation conversation = Quest.GetQuest("MantellaConversation") as MantellaConversation
             if conversation
                 conversation.MDI_RequestVoiceInput()
             endIf
+        elseIf KeyCode == MantellaListenerTextHotkey && (Quest.GetQuest("MantellaConversation") as MantellaConversation).MDI_IsSessionActive()
+            MantellaConversation conversation = Quest.GetQuest("MantellaConversation") as MantellaConversation
+            conversation.MDI_RequestTextInput()
         elseIf KeyCode == MantellaListenerTextHotkey
             If(!microphoneEnabled) ;Otherwise, try to open player text input if microphone is off
                 MantellaConversation conversation = Quest.GetQuest("MantellaConversation") as MantellaConversation

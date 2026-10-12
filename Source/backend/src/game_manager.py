@@ -1,4 +1,4 @@
-# Modified for Mantella duel input v1.0 on 2026-09-09.
+# Modified for Mantella Dual Input v1.1 on 2026-10-12.
 # Source baseline: Mantella v0.14 (c5449f3c8b081c722212c496c298c16277394ae1).
 # Distributed under AGPL-3.0-or-later; see SOURCE-AND-LICENSES.txt.
 from typing import Any, Hashable
@@ -50,6 +50,7 @@ class GameStateManager:
         self.__mic_ptt: bool = False # push-to-talk
         self.__stt: Transcriber | None = None
         self.__dual_input: bool = False
+        self.__dual_stt: Transcriber | None = None # kept between dual sessions so the STT model loads once
         self.__first_line: bool = True
         self.__automatic_greeting: bool = config.automatic_greeting
         self.__conv_has_narrator: bool = config.narration_handling == NarrationHandlingEnum.USE_NARRATOR
@@ -211,6 +212,9 @@ class GameStateManager:
         player_text: str = input_json.get(comm_consts.KEY_REQUESTTYPE_PLAYERINPUT, '')
         self.__update_context(input_json)
         updated_player_text, update_events, player_spoken_sentence = self.__talk.process_player_input(player_text)
+        if self.__dual_input and not player_text and not updated_player_text and self.__talk.awaiting_player_input:
+            # Speak Reply heard nothing: hand input straight back to the player.
+            return {comm_consts.KEY_REPLYTYPE: comm_consts.KEY_REPLYTYPE_PLAYERTALK, comm_consts.KEY_DUALINPUT_NOSPEECH: True}
         if update_events:
             return {comm_consts.KEY_REPLYTYPE: comm_consts.KEY_REQUESTTYPE_TTS, comm_consts.KEY_TRANSCRIBE: updated_player_text}
 
@@ -272,16 +276,22 @@ class GameStateManager:
         return {comm_consts.KEY_REPLYTYPE: comm_consts.KEY_REPLYTYPE_ENDCONVERSATION}
 
     def _start_dual_input_session(self) -> None:
-        """Create a session-local Transcriber without changing shared config."""
-        if self.__stt:
+        """Attach the dual-input Transcriber without changing shared config.
+
+        The Transcriber is reused across dual sessions, like the legacy mic
+        Transcriber, so the speech model is not reloaded for every conversation.
+        """
+        if self.__stt and self.__stt is not self.__dual_stt:
             self.__stt.stop_listening()
         self.__stt = None
         self.__mic_input = False
         self.__mic_ptt = False
-        self.__stt = Transcriber(DualInputConfigProxy(self.__config))
+        if not self.__dual_stt:
+            self.__dual_stt = Transcriber(DualInputConfigProxy(self.__config))
+        self.__stt = self.__dual_stt
 
     def _stop_dual_input_session(self) -> None:
-        """Stop and discard only the session-local dual-input Transcriber."""
+        """Stop listening and detach the dual-input Transcriber from the session."""
         transcriber = self.__stt
         self.__stt = None
         self.__mic_input = False
@@ -298,6 +308,7 @@ class GameStateManager:
             self.__mic_input = True
             # only init Transcriber if mic input is enabled
             if not self.__stt:
+                self.__dual_stt = None # release the dual-input model before loading the legacy one
                 self.__stt = Transcriber(self.__config)
             if input_json[comm_consts.KEY_INPUTTYPE] == comm_consts.KEY_INPUTTYPE_PTT:
                 self.__mic_ptt = True

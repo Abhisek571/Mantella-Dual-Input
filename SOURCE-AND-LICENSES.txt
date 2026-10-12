@@ -1,6 +1,6 @@
-Mantella duel input v1.0
+Mantella Dual Input v1.1
 
-Unofficial modifications to Mantella, dated 2026-09-09: separate typed/spoken
+Unofficial modifications to Mantella, dated 2026-10-12: separate typed/spoken
 reply controls and a shorter MCM layout. Not endorsed by the Mantella authors.
 
 LICENSES
@@ -16,10 +16,10 @@ compiled scripts are in Scripts. The root license does not replace this MIT noti
 UPSTREAM SOURCE
 Backend baseline: Mantella v0.14
 https://github.com/art-from-the-machine/Mantella/tree/v0.14
-Game baseline: 0c5f8513aff61cda1f32c81a962eee36ba74fdb7
-https://github.com/art-from-the-machine/Mantella-Spell/tree/0c5f8513aff61cda1f32c81a962eee36ba74fdb7
+Game baseline: Mantella-Spell v0.14
+https://github.com/art-from-the-machine/Mantella-Spell/tree/v0.14
 Patch source and releases:
-https://github.com/Abhisek571/Mantella-duel-input
+https://github.com/Abhisek571/Mantella-Dual-Input
 
 BUILDING
 The package supplies the modified backend modules and archive helper in

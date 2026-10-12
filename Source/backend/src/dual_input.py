@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
-# Added for Mantella duel input; released as v1.0 on 2026-09-09.
+# Added for Mantella Dual Input; v1.1 released on 2026-10-12.
 # Source target: Mantella v0.14 (c5449f3c8b081c722212c496c298c16277394ae1).
 """Small, source-only adapter for explicit one-shot dual-input capture."""
 
@@ -73,7 +73,7 @@ if "--mdi-self-test" in sys.argv:
               and transcriber.calls == ["start", "read", "stop"]
               and not view.ptt_enabled and not view.proactive_mic_mode
               and original.ptt_enabled and original.proactive_mic_mode)
-    print(json.dumps({"name": "Mantella duel input", "version": "0.1.0-prototype",
+    print(json.dumps({"name": "Mantella Dual Input", "version": "1.1",
                       "adapter_cleanup_test": passed, "microphone_opened": False,
                       "gameplay_validated": False, "frozen": bool(getattr(sys, "frozen", False))}), flush=True)
     raise SystemExit(0 if passed else 1)

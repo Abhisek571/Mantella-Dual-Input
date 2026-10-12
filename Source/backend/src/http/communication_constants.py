@@ -1,4 +1,4 @@
-# Modified for Mantella duel input v1.0 on 2026-09-09.
+# Modified for Mantella Dual Input v1.1 on 2026-10-12.
 # Source baseline: Mantella v0.14 (c5449f3c8b081c722212c496c298c16277394ae1).
 # Distributed under AGPL-3.0-or-later; see SOURCE-AND-LICENSES.txt.
 
@@ -32,6 +32,7 @@ class communication_constants:
     KEY_INPUTTYPE_TEXT: str = PREFIX + "text_input"
     KEY_INPUTTYPE_PTT: str = PREFIX + "push_to_talk"
     KEY_DUALINPUT: str = "mdi_dual_input"
+    KEY_DUALINPUT_NOSPEECH: str = "mdi_no_speech"
 
     KEY_REQUESTTYPE_TTS: str = PREFIX + "tts"
     KEY_INPUT_NAMESINCONVERSATION: str = PREFIX + "names_in_conversation"

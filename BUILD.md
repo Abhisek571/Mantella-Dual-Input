@@ -7,8 +7,8 @@ Install **CPython 3.11** and Git. You also need the original, supported Windows 
 Run in **Command Prompt**:
 
 ```bat
-git clone https://github.com/Abhisek571/Mantella-duel-input.git
-cd Mantella-duel-input
+git clone https://github.com/Abhisek571/Mantella-Dual-Input.git
+cd Mantella-Dual-Input
 py -3.11 --version
 py -3.11 -m unittest discover -s tests -v
 py -3.11 setup_backend.py --original "C:\path\to\original\Mantella.exe"
@@ -37,7 +37,7 @@ The release already includes compiled `.pex` files. To rebuild them, obtain:
 
 - Skyrim Special Edition's Papyrus compiler and `TESV_Papyrus_Flags.flg` from the Creation Kit.
 - Skyrim's base Papyrus sources, plus SKSE, SkyUI, UIExtensions and SKSE_HTTP script sources.
-- The original [Mantella-Spell sources](https://github.com/art-from-the-machine/Mantella-Spell/tree/0c5f8513aff61cda1f32c81a962eee36ba74fdb7).
+- The original [Mantella-Spell sources](https://github.com/art-from-the-machine/Mantella-Spell/tree/v0.14) (v0.14 tag).
 
 Extract dependency sources if they are archived; the compiler needs `.psc` imports, not just installed `.pex` files. Set the paths below to your source folders. Keep this repository's `Scripts\Source` first so its modified scripts take precedence.
 
@@ -55,7 +55,7 @@ Use `%%S` instead of `%S` if saving that loop in a `.cmd` file. Require successf
 
 ## Assemble a local MO2 override
 
-1. Create a separate mod folder named **Mantella duel input**.
+1. Create a separate mod folder named **Mantella Dual Input**.
 2. Copy `Scripts`, `meta.ini`, and the generated `SKSE` folder into it. If recompiling Papyrus, replace the four files in `Scripts` with your successful `build\Scripts` output.
 3. Keep `Source`, `Licenses`, `LICENSE`, and `SOURCE-AND-LICENSES.txt` with the mod for source and notices.
 4. Enable it after the original Mantella mod in MO2's left pane. Leave the original installed. Follow [INSTALL.txt](INSTALL.txt) for MCM setup and removal.

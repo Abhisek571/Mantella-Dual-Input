@@ -1,4 +1,4 @@
-"""One-time installer for Mantella duel input. Requires Python 3.11."""
+"""One-time installer for Mantella Dual Input. Requires Python 3.11."""
 from pathlib import Path
 import json
 import sys
@@ -57,12 +57,12 @@ def main():
         if len(candidates) == 1:
             original = candidates[0]
         else:
-            raw = input('Full path to ORIGINAL Mantella.exe (not the duel input copy): ').strip().strip('"')
+            raw = input('Full path to ORIGINAL Mantella.exe (not the Dual Input copy): ').strip().strip('"')
             if not raw:
                 raise ValueError('No original executable selected. Nothing changed.')
             original = Path(raw)
     build(original, output)
-    print('Mantella duel input v1.0 backend ready: ' + str(output))
+    print('Mantella Dual Input v1.1 backend ready: ' + str(output))
     print('Original Mantella and your settings were not changed.')
     print('Enable this mod after Mantella in MO2, then start a new conversation.')
 

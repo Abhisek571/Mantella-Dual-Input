@@ -1,4 +1,4 @@
-# Modified for Mantella duel input v1.0 on 2026-09-09.
+# Modified for Mantella Dual Input v1.1 on 2026-10-12.
 # Source baseline: Mantella v0.14 (c5449f3c8b081c722212c496c298c16277394ae1).
 # Distributed under AGPL-3.0-or-later; see SOURCE-AND-LICENSES.txt.
 from enum import Enum
@@ -103,7 +103,11 @@ class Conversation:
     @property
     def stt(self) -> Transcriber | None:
         return self.__stt
-    
+
+    @property
+    def awaiting_player_input(self) -> bool:
+        return self.__awaiting_player_input
+
     @utils.time_it
     def add_or_update_character(self, new_character: list[Character]):
         """Adds or updates a character in the conversation.
@@ -240,6 +244,10 @@ class Conversation:
                 else:
                     if not self.__stt or not self.__allow_mic_input:
                         return '', False, None
+                    # The Listen action's longer pause is already applied to the
+                    # Transcriber; clear the flag so it only covers this reply.
+                    if self.__output_manager.listen_requested:
+                        self.__output_manager.clear_listen_requested()
                     input_wait_start_time = time.time()
                     player_text = capture_dual_input_once(
                         self.__stt,
